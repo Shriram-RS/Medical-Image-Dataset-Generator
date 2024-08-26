@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAN Image Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e0f7fa;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      border-radius: 15px;
+      max-width: 600px;
+      width: 90%;
+      margin-bottom: 2rem;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 0;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    input[type="file"] {
+      display: block;
+      margin-top: 0.5rem;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background-color: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .file-info {
+      margin-top: 0.5rem;
+      font-size: 0.875rem;
+      color: #555;
+    }
+    .footer {
+      background-color: #007BFF;
+      color: #fff;
+      padding: 1rem;
+      width: 100%;
+      text-align: center;
+    }
+    .footer p {
+      margin: 0.5rem 0;
+    }
+    .footer a {
+      color: #fff;
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 1rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>GAN Image Generator</h1>
+  </header>
+  <div class="container">
+    <h3>Upload Image and Generate GAN Images</h3>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="file">Choose an image:</label>
+        <input type="file" id="file" name="file" required>
+        <div id="file-info" class="file-info"></div>
+      </div>
+      <div class="form-group">
+        <label for="epochs">Number of epochs:</label>
+        <input type="number" id="epochs" name="epochs" value="4000" min="1" required>
+      </div>
+      <button type="submit">Upload and Generate</button>
+    </form>
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+  </div>
+  <footer class="footer">
+    <p>Contact Us: <a href="vivekar@gmail.com">vivekar@gmail.com</a></p>
+    <p>Address: TCE, Madurai </p>
+    <p>&copy; 2024 GAN Image Generator. All rights reserved.</p>
+  </footer>
+  <script>
+    document.getElementById('file').addEventListener('change', function() {
+      var fileName = this.files[0].name;
+      var fileSize = (this.files[0].size / 1024 / 1024).toFixed(2) + ' MB';
+      document.getElementById('file-info').textContent = 'Selected file: ' + fileName + ' (' + fileSize + ')';
+    });
+  </script>
+</body>
+</html>
